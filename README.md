@@ -16,7 +16,7 @@
 > "Automatizar para evoluir." ⚙️
 
 * **Nome:** Arthur Augusto da Silva Cunha
-* **LinkedIn:** [Seu Perfil Aqui](https://linkedin.com/in/seu-usuario) 🔗
+* **LinkedIn:** [Arthur Augusto(https://linkedin.com/in/arthur-augusto-250b8a186) 🔗
 * **GitHub:** [@ArthurAugusto10](https://github.com/ArthurAugusto10) 🐙
 
 ---
