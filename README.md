@@ -52,4 +52,4 @@
   <img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake.svg" alt="snake" />
 </p>
 
-<p align="center">Feito com ❤️ por Arthur Augusto</p>
+<p align="center"></p>
