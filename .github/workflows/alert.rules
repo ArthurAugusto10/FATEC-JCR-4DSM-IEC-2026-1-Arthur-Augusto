@@ -1,0 +1,11 @@
+groups:
+- name: MonitoramentoAlertas
+  rules:
+  - alert: InstanciaForaDoAr
+    expr: up == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Alerta Crítico: Instância {{ $labels.instance }} está fora do ar"
+      description: "A instância não está respondendo às coletas do Prometheus há mais de 1 minuto."
