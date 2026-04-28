@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # Aplicação Node.js
+  app:
+    image: node:18
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    command: bash -c "npm install express winston && node app.js"
+    ports:
+      - "8080:8080"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+
+  # Coletor de Logs
+  fluentd:
+    image: fluent/fluentd:v1.14-1
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+
+  # ELK Stack (Armazenamento e Visualização de Logs)
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.10
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.10
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+
+  # Monitoramento de Métricas
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alert.rules:/etc/prometheus/alert.rules
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
