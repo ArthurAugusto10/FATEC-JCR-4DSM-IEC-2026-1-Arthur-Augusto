@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 15s # Frequência de coleta das métricas
+
+rule_files:
+  - "alert.rules" # Arquivo com as regras de alerta que criaremos a seguir
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
